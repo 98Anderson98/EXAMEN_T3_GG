@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: be-ecommerce-lariosanderson
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: postgres
+      - key: DB_HOST
+        fromDatabase:
+          name: db-ecommerce-lariosanderson
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: db-ecommerce-lariosanderson
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: db-ecommerce-lariosanderson
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: db-ecommerce-lariosanderson
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: db-ecommerce-lariosanderson
+          property: password
+      - key: JWT_SECRET
+        value: clave-secreta-ecommerce-lariosanderson-2026-jwt-segura
+
+databases:
+  - name: db-ecommerce-lariosanderson
+    databaseName: db_ecommerce_lariosanderson
+    user: ecommerce_user
+    plan: free

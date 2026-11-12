@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "BE Ecommerce - Anderson Fabrizzio Larios Tito",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "token", "value": "" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "1. Login (anderson)",
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "const r = pm.response.json();",
+          "pm.collectionVariables.set('token', r.token);",
+          "pm.test('Token recibido', () => pm.expect(r.token).to.be.a('string'));"
+        ] }
+      }],
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/auth/login",
+        "body": { "mode": "raw", "raw": "{\n  \"username\": \"anderson\",\n  \"password\": \"anderson123\"\n}" }
+      }
+    },
+    {
+      "name": "2. Listar productos",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/productos" }
+    },
+    {
+      "name": "3. Crear producto",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/productos",
+        "body": { "mode": "raw", "raw": "{\n  \"nombre\": \"Tablet Galaxy Tab A9 - Anderson Larios\",\n  \"categoria\": \"Tablets\",\n  \"precioCompra\": 550.00,\n  \"precioVenta\": 799.90,\n  \"stock\": 12,\n  \"marca\": \"Samsung\",\n  \"codigoBarras\": \"7751234000099\",\n  \"fechaIngreso\": \"2026-11-11\"\n}" }
+      }
+    },
+    {
+      "name": "4. Obtener producto por id",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/productos/1" }
+    },
+    {
+      "name": "5. Actualizar producto",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/productos/1",
+        "body": { "mode": "raw", "raw": "{\n  \"nombre\": \"Laptop IdeaPad 3 (Modificado por Anderson)\",\n  \"categoria\": \"Computo\",\n  \"precioCompra\": 1800.00,\n  \"precioVenta\": 2199.90,\n  \"stock\": 10,\n  \"marca\": \"Lenovo\",\n  \"codigoBarras\": \"7751234000011\",\n  \"fechaIngreso\": \"2026-10-01\"\n}" }
+      }
+    },
+    {
+      "name": "6. Buscar por categoria",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/productos/categoria/Accesorios" }
+    },
+    {
+      "name": "7. Eliminar producto",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/api/productos/6" }
+    },
+    {
+      "name": "8. Registrar usuario",
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/auth/register",
+        "body": { "mode": "raw", "raw": "{\n  \"username\": \"fabrizzio\",\n  \"password\": \"fabrizzio123\",\n  \"nombreCompleto\": \"Fabrizzio Larios Tito\"\n}" }
+      }
+    }
+  ]
+}

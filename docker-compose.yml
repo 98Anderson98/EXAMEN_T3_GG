@@ -1,0 +1,41 @@
+services:
+
+  # Base de datos MySQL
+  mysql-ecommerce:
+    image: mysql:8.0
+    container_name: mysql-ecommerce
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: db_ecommerce_lariosanderson
+      TZ: America/Lima
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db_ecommerce_lariosanderson.sql:/docker-entrypoint-initdb.d/01-init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot123"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # Backend Spring Boot
+  be-ecommerce:
+    build: .
+    image: be-ecommerce-lariosanderson:1.0
+    container_name: be-ecommerce-lariosanderson
+    restart: unless-stopped
+    depends_on:
+      mysql-ecommerce:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:mysql://mysql-ecommerce:3306/db_ecommerce_lariosanderson?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Lima
+      DB_USER: root
+      DB_PASSWORD: root123
+      JWT_SECRET: clave-secreta-ecommerce-lariosanderson-2026-jwt-segura
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:

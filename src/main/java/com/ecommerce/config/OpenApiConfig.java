@@ -9,10 +9,6 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Springdoc OpenAPI (Swagger) con boton "Authorize" para JWT.
- * UI: http://localhost:8080/swagger-ui.html
- */
 @Configuration
 public class OpenApiConfig {
 

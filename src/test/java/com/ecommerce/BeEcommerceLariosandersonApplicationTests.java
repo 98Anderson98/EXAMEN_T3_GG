@@ -53,7 +53,6 @@ class BeEcommerceLariosandersonApplicationTests {
                  "stock":5,"marca":"Samsung","codigoBarras":"TEST-001","fechaIngreso":"2026-11-11"}
                 """;
 
-        // Crear
         String creado = mvc.perform(post("/api/productos").header("Authorization", token)
                         .contentType(MediaType.APPLICATION_JSON).content(producto))
                 .andExpect(status().isCreated())
@@ -61,7 +60,6 @@ class BeEcommerceLariosandersonApplicationTests {
                 .andReturn().getResponse().getContentAsString();
         long id = mapper.readTree(creado).get("id").asLong();
 
-        // Listar / obtener / buscar (Named Queries)
         mvc.perform(get("/api/productos").header("Authorization", token))
                 .andExpect(status().isOk()).andExpect(jsonPath("$[0].id").exists());
         mvc.perform(get("/api/productos/" + id).header("Authorization", token))
@@ -71,12 +69,10 @@ class BeEcommerceLariosandersonApplicationTests {
         mvc.perform(get("/api/productos/buscar").param("nombre", "tab").header("Authorization", token))
                 .andExpect(status().isOk()).andExpect(jsonPath("$[0].id").value(id));
 
-        // Actualizar
         mvc.perform(put("/api/productos/" + id).header("Authorization", token)
                         .contentType(MediaType.APPLICATION_JSON).content(producto.replace("\"stock\":5", "\"stock\":9")))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.stock").value(9));
 
-        // Eliminar
         mvc.perform(delete("/api/productos/" + id).header("Authorization", token))
                 .andExpect(status().isNoContent());
         mvc.perform(get("/api/productos/" + id).header("Authorization", token))

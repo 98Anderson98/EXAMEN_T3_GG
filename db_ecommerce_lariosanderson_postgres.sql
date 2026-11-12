@@ -1,10 +1,3 @@
--- =====================================================================
---  Script PostgreSQL (Render) - db_ecommerce_lariosanderson
---  Autor: Anderson Fabrizzio Larios Tito
---  NOTA: en Render la BD ya existe; ejecuta este script conectado a ella.
---  (Si no lo ejecutas, Hibernate crea las tablas solo con ddl-auto=update)
--- =====================================================================
-
 DROP TABLE IF EXISTS productos;
 CREATE TABLE productos (
     id             BIGSERIAL      PRIMARY KEY,

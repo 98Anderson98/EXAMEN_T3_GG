@@ -14,10 +14,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-/**
- * Lee el header Authorization (Bearer token) en cada peticion
- * y autentica al usuario si el token es valido.
- */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -53,7 +49,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception e) {
-            // Token invalido o expirado: se continua sin autenticar (respondera 401)
             SecurityContextHolder.clearContext();
         }
         chain.doFilter(request, response);

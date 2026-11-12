@@ -12,9 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Map;
 
-/**
- * Genera y valida tokens JWT (stateless).
- */
 @Service
 public class JwtService {
 

@@ -2,10 +2,6 @@ package com.ecommerce.entity;
 
 import jakarta.persistence.*;
 
-/**
- * Usuarios del sistema para Spring Security + JWT.
- * Tabla: usuarios
- */
 @Entity
 @Table(name = "usuarios")
 @NamedQueries({

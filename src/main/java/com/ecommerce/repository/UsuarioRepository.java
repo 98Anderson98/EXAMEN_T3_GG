@@ -10,7 +10,6 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    // Usa la @NamedQuery "Usuario.buscarPorUsername"
     Optional<Usuario> buscarPorUsername(@Param("username") String username);
 
     boolean existsByUsername(String username);

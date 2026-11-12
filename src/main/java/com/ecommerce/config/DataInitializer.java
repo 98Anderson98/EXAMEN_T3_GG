@@ -14,12 +14,6 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * Crea los usuarios y productos iniciales si no existen (password encriptado con BCrypt).
- *   admin    / admin123     (ROLE_ADMIN)
- *   anderson / anderson123  (ROLE_ADMIN)  -> usuario con tu nombre
- *   invitado / invitado123  (ROLE_USER)
- */
 @Component
 public class DataInitializer implements CommandLineRunner {
 

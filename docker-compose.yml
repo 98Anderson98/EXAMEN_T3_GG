@@ -1,6 +1,4 @@
 services:
-
-  # Base de datos MySQL
   mysql-ecommerce:
     image: mysql:8.0
     container_name: mysql-ecommerce
@@ -20,7 +18,6 @@ services:
       timeout: 5s
       retries: 10
 
-  # Backend Spring Boot
   be-ecommerce:
     build: .
     image: be-ecommerce-lariosanderson:1.0

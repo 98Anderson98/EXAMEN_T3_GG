@@ -26,3 +26,4 @@ Backend API REST E-commerce implementado con **Spring Boot 3**, **Spring Data JP
 - `GET /api/productos/buscar?nombre=...` - Buscar por nombre (`@NamedQuery` segura)
 - `GET /api/productos/stock-bajo?minimo=10` - Filtrar stock bajo (`@NamedQuery` segura)
 - `GET /swagger-ui.html` - Documentacion interactiva OpenAPI / Swagger
+

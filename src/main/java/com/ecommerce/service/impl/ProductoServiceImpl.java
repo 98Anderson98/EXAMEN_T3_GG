@@ -12,9 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Logica de negocio del CRUD de productos.
- */
 @Service
 @Transactional
 public class ProductoServiceImpl implements ProductoService {
@@ -83,14 +80,11 @@ public class ProductoServiceImpl implements ProductoService {
         return productoRepository.stockBajo(minimo).stream().map(this::toDTO).toList();
     }
 
-    // ----------------- utilitarios -----------------
-
     private Producto buscarEntidad(Long id) {
         return productoRepository.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException("Producto no encontrado con id " + id));
     }
 
-    /** Regla de negocio: el precio de venta debe ser mayor o igual al de compra. */
     private void validarReglas(ProductoRequestDTO dto) {
         if (dto.precioVenta().compareTo(dto.precioCompra()) < 0) {
             throw new ReglaNegocioException("El precio de venta no puede ser menor al precio de compra");

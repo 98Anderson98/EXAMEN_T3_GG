@@ -5,9 +5,6 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * DTO de entrada para crear / actualizar productos.
- */
 public record ProductoRequestDTO(
 
         @NotBlank(message = "El nombre es obligatorio")

@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Carga los usuarios desde la tabla "usuarios" de la base de datos.
- */
 @Service
 public class UsuarioDetailsService implements UserDetailsService {
 

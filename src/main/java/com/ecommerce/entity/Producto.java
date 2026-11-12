@@ -5,10 +5,6 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * Entidad JPA Producto con Named Queries.
- * Tabla: productos
- */
 @Entity
 @Table(name = "productos")
 @NamedQueries({

@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Controlador REST del CRUD de productos.
- * GET  -> roles USER y ADMIN
- * POST / PUT / DELETE -> solo ADMIN
- */
 @RestController
 @RequestMapping("/api/productos")
 @Tag(name = "Productos", description = "CRUD de productos")

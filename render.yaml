@@ -34,5 +34,5 @@ services:
 databases:
   - name: db-ecommerce-lariosanderson
     databaseName: db_ecommerce_lariosanderson
-    user: ecommerce_user
+    user: anderson
     plan: free
